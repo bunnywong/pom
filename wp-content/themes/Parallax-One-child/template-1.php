@@ -9,21 +9,20 @@
   get_header();
 
     // echo do_shortcode('[wpuf_form id="49"]'); //@admin only
-  $ele = array('申請時間', '股權生效', '認購股數', '金額', '參考編號', '詳細');
-  // Append 派息 1 ~ 12 to array
-  for($i=1; $i < 13; $i++) {
-    $ele[] = '派息' . $i;
-  }
+  $str;
+  $str .= '<div class="container" style="margin-top: 200px;">';
 
-  $str = '<div class="container" style="margin-top: 200px;"><table class="table table-hover"><tbody>';
   foreach ($posts as $key => $val) {
     // Get meta by post ID
     $custom_field = get_post_meta($val->ID);
-    foreach ($ele as $k => $v) {
-      $str .= '<tr><td>'.$v . '</td><td>' .tick_filter($custom_field[$v][0]) . '</td></tr>'; // [0] as default
+    $str .= '<table class="table table-hover"><tbody>';
+    foreach (my_title_in_from('a') as $k => $v) {
+      $str .= '<tr><td>'.$v . '</td><td>' .my_field_render($custom_field[$v], $v) . '</td></tr>';
     }
+    $str .= '</tbody></table>';
   }
-  $str .= '</tbody></table></div>';
+
+  $str .= '</div>';
 
   echo $str;
 
