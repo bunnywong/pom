@@ -17,7 +17,6 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" <?php body_class(); ?> dir="<?php if (is_rtl()) echo "rtl"; else echo "ltr"; ?>">
-heheheheh
 <div id="mobilebgfix">
   <div class="mobile-bg-fix-img-wrap">
     <div class="mobile-bg-fix-img"></div>
@@ -163,3 +162,5 @@ heheheheh
             </div>
             <!-- /END STICKY NAVIGATION -->
   <!-- my custom end tag -->
+  </div>
+   </header>

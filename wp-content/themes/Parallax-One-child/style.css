@@ -16,10 +16,32 @@
 /*@import('../Parallax-One/style.css');*/
 /*body {background: red;}*/
 
+/* Global */
 footer {
   display: none;
 }
 
+
 #site-navigation a {
   color: white;
 }
+
+/* page 1 */
+
+/* Table */
+.wpuf-form-add,
+.my-table {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.my-table td:first-child {
+  width: 200px;
+}
+
+/*Field: Interest 1 ~ 12*/
+body:not(.user-is-admin) .admin {
+  display: none;
+}
+

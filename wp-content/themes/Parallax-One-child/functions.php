@@ -40,15 +40,18 @@ function get_my_block_view_template() {
 /**
  * Render from by title
  */
-function my_title_in_from($from) {
+function my_title_in_from($from, $user_role) {
+
+
   if ($from === 'a') {
     $from = array('申請時間', '股權生效', '認購股數', '金額', '參考編號', '詳細');
-    // Append 派息 1 ~ 12 to array
-    for($i=1; $i < 13; $i++) {
-      $from[] = '派息' . $i;
+    // Append 派息 1 ~ 12 to array for ADMIN role
+    if ($user_role === 'administrator') {
+      for($i=1; $i < 13; $i++) {
+        $from[] = '派息' . $i;
+      }
     }
   }
-
   return $from;
 }
 
