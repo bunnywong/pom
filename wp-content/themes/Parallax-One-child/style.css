@@ -40,8 +40,7 @@ footer {
   max-width: 200px;
 }
 
-/*Field: Interest 1 ~ 12*/
-body:not(.user-is-admin) .admin {
-  display: none;
+/* From */
+.wpuf-form-add {
+  // border: 1px solid lightgray;
 }
-

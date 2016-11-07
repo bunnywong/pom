@@ -16,14 +16,16 @@
     $user = get_userdata($_GET['uid']);
   }
 
-  $posts = query_posts( array( 'author'=> $user_id, 'post_type' => 'post', 'posts_per_page' => 6, 'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit'), 'paged' => ( get_query_var('paged') ? get_query_var('paged') : 1 ) ) );
-  // include( get_my_block_view_template() );
+  $cid = 4; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
+  $posts = query_posts( array( 'author'=> $user_id, 'post_type' => 'post', 'category__and'=> $cid, 'posts_per_page' => 6, 'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit'), 'paged' => ( get_query_var('paged') ? get_query_var('paged') : 1 ) ) );
+  include( get_my_block_view_template() );
   wp_reset_postdata();
-  get_header(); //@DEBUG
+  get_header();
 
   $str;
   $str .= '<div class="container">';
   $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
+  $i = 0; //@DEBUG
 
   foreach ($posts as $key => $val) {
     if ($val->post_status === 'publish' || $is_admin === TRUE) {
@@ -35,15 +37,17 @@
       }
       $str .= '</tbody></table>';
     }
-
+    $i++; //@DEBUG
   }
 
   $str .= '</div>';
 
   echo $str;
+  echo '<h3 class="db text-center">POST COUNT: '.$i.'</h3>'; //@DEBUG
 
-  // echo '<hr><h2 class="text-center">提取或轉移</h2>';
-  // echo do_shortcode('[wpuf_form id="49"]'); //@admin only
+  echo '<hr><h2 class="text-center">A. 存入股本</h2>';
+  echo do_shortcode('[wpuf_form id="49"]'); //@admin only
+  // echo do_shortcode('[wpuf_form id="57"]'); //@admin only
 
   if ($is_admin) {
     echo "<script>jQuery('body').addClass('user-is-admin');</script>";

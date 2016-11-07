@@ -50,6 +50,11 @@ function my_title_in_from($from, $is_admin) {
       }
     }
   }
+
+  if ($from === 'b') {
+    $from = array('日期', '類別', '金額', '詳細');
+  }
+
   return $from;
 }
 
@@ -59,7 +64,6 @@ function my_title_in_from($from, $is_admin) {
 function my_field_render($val, $title) {
   if (substr($title,0, 6) === '派息') {
     if ($val[0] === 'yes') { // [0] as default
-      // dvm($val);
       $val[0] = '✅';
     }
     else {
