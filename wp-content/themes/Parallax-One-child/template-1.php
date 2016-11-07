@@ -1,6 +1,6 @@
 <?php
   /*
-  Template Name: 1. block view(clone from blog)
+  Template Name: 1. block view
   */
 
   global $current_user;
@@ -29,7 +29,7 @@
     if ($val->post_status === 'publish' || $is_admin === TRUE) {
       // Get meta by post ID
       $custom_field = get_post_meta($val->ID);
-      $str .= '<table class="table table-hover my-table"><tbody>';
+      $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><tbody>';
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
         $str .= '<tr><td>'.($v) . '</td><td>' . my_field_render($custom_field[$v], $v) . '</td></tr>';
       }

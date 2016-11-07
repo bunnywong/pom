@@ -37,7 +37,7 @@ footer {
 }
 
 .my-table td:first-child {
-  width: 200px;
+  max-width: 200px;
 }
 
 /*Field: Interest 1 ~ 12*/
