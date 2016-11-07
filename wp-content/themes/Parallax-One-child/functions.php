@@ -7,7 +7,7 @@
    * Debug tool
    */
   function vd($var) {
-    echo '<pre>';
+    echo '<pre class="db">';
     echo var_dump($var);
     echo '</pre>';
   }

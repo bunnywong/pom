@@ -22,7 +22,7 @@
   get_header(); //@DEBUG
 
   $str;
-  $str .= '<div class="container" style="margin-top: 200px;">';
+  $str .= '<div class="container">';
   $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
 
   foreach ($posts as $key => $val) {
