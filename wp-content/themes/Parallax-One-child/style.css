@@ -17,6 +17,7 @@
 /*body {background: red;}*/
 
 /* Global */
+.navbar-brand,
 footer {
   display: none;
 }
