@@ -3,7 +3,7 @@
  Plugin Name: Customize Login Image
  Plugin URI: http://apasionados.es/#utm_source=wpadmin&utm_medium=plugin&utm_campaign=wpcustomizeloginimageplugin 
  Description: This plugin allows you to customize the image and the appearance of the WordPress Login Screen.
- Version: 2.0
+ Version: 3.3.1
  Author: Apasionados, Apasionados del Marketing
  Author URI: http://apasionados.es
 
@@ -67,12 +67,31 @@ function cli_plugin_action_links( $links, $file ) {
 	return $links;
 }
 
+function ad_login_footer() {
+	$server_ip_address = (!empty($_SERVER[ 'SERVER_ADDR' ]) ? $_SERVER[ 'SERVER_ADDR' ] : "");
+	if ($server_ip_address == "") { // Added for IP Address in IIS
+		$server_ip_address = (!empty($_SERVER[ 'LOCAL_ADDR' ]) ? $_SERVER[ 'LOCAL_ADDR' ] : "");
+	}
+	if ( ( get_option( 'cli_show_server_ip' ) === 'show') && ( get_option( 'cli_show_server_hostname' ) === 'show') )  {
+		echo ('<p style="width: 320px; margin:auto; padding: 20px 0 20px 0; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13); box-shadow: 0 1px 3px rgba(0,0,0,.13); text-align: center; color:#008EC2">' . esc_html__( 'SERVER IP:', 'customize-login-image' ) . ' <strong>' . $server_ip_address . '</strong><br />' . esc_html__( 'HOST NAME:', 'customize-login-image' ) . ' <strong>' . gethostname() . '</strong></p>');
+	} elseif ( get_option( 'cli_show_server_ip' ) === 'show' ) {
+		echo ('<p style="width: 320px; margin:auto; padding: 20px 0 20px 0; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13); box-shadow: 0 1px 3px rgba(0,0,0,.13); text-align: center; color:#008EC2">' . esc_html__( 'SERVER IP:', 'customize-login-image' ) . ' <strong>' . $server_ip_address . '</strong></p>');	
+	} elseif ( get_option( 'cli_show_server_hostname' ) === 'show' ) {
+		echo ('<p style="width: 320px; margin:auto; padding: 20px 0 20px 0; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13); box-shadow: 0 1px 3px rgba(0,0,0,.13); text-align: center; color:#008EC2">' . esc_html__( 'HOST NAME:', 'customize-login-image' ) . ' <strong>' . gethostname() . '</strong></p>');	
+	}
+}
+
+add_action( 'login_head', 'cli_load_language' );
 add_filter( 'login_headertitle', 'cli_logo_title' );
 add_filter( 'login_headerurl', 'cli_logo_url' );
 add_action( 'login_head', 'cli_logo_file' );
 add_action( 'login_head', 'cli_login_background_color' );
 add_action( 'login_head', 'cli_custom_css' );
 add_filter( 'plugin_action_links', 'cli_plugin_action_links', 10, 2);
+
+if ( ( get_option( 'cli_show_server_ip' ) === 'show') || ( get_option( 'cli_show_server_hostname' ) === 'show') )  {
+	add_action( 'login_footer', 'ad_login_footer');
+}
 
 require_once( 'customize-login-image-options.php' );
 ?>

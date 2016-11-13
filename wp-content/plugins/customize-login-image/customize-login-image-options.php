@@ -16,6 +16,8 @@ function cli_register_settings() {
 	register_setting( 'customize-login-image-settings-group', 'cli_logo_url' );
 	register_setting( 'customize-login-image-settings-group', 'cli_login_background_color' );
 	register_setting( 'customize-login-image-settings-group', 'cli_custom_css' );
+	register_setting( 'customize-login-image-settings-group', 'cli_show_server_ip' );
+	register_setting( 'customize-login-image-settings-group', 'cli_show_server_hostname' );
 }
 
 function cli_admin_scripts() {
@@ -66,7 +68,7 @@ function cli_settings_page() { ?>
 				<th scope="row"><?php _e( 'Custom Login Background', 'customize-login-image' ); ?></th>
 				<td><label for="cli_login_background_color">
 					<input type="text" id="cli_login_background_color" class="color-picker" name="cli_login_background_color" value="<?php echo get_option( 'cli_login_background_color' ); ?>" />
-					<p class="description"><?php _e( '' ); ?></p>
+					<p class="description"><?php _e( 'Add your own custom Login Background', 'customize-login-image'  ); ?></p>
 					</label>
 				</td>
 			</tr>
@@ -77,7 +79,15 @@ function cli_settings_page() { ?>
 					<p class="description"><?php _e( 'Add your own css to the WordPress dashboard.', 'customize-login-image' ); ?></p>
 				</td>
 			</tr>
-		</table>
+			<tr valign="top">
+				<th scope="row"><?php _e( 'Show IP & Hostname', 'customize-login-image' ); ?></th>
+				<td>
+					<p><label><input type="checkbox" id="cli_show_server_ip" name="cli_show_server_ip" value="<?php echo ( 'show' ); ?>" <?php if ( get_option( 'cli_show_server_ip' ) === 'show') { echo 'checked'; } ?> ><?php _e('Show server IP on login screen', 'customize-login-image'); ?></label></p>
+					<p><label><input type="checkbox" id="cli_show_server_hostname" name="cli_show_server_hostname" value="<?php echo ( 'show' ); ?>" <?php if ( get_option( 'cli_show_server_hostname' ) === 'show') { echo 'checked'; } ?> ><?php _e('Show server HOSTNAME on login screen', 'customize-login-image'); ?></label></p>
+					<p class="description"><?php _e( 'Do you want to show the server IP and/or the Hostname on the login screen?', 'customize-login-image' ); ?></p>
+				</td>
+			</tr>
+			</table>
 		<p class="submit">
 			<input type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'customize-login-image' ); ?>" />
 		</p>

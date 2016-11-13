@@ -4,8 +4,8 @@ Donate link: http://apasionados.es/
 Author URI: http://apasionados.es/
 Tags: custom, admin, customize, logo, login
 Requires at least: 3.0.1
-Tested up to: 4.6
-Stable tag: 2.0
+Tested up to: 4.6.1
+Stable tag: 3.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,11 +23,15 @@ There are three features we love:
 
 3) You can translate the plugin into your own language. So far English and Spanish translations are included. Just translate the .po file in the /lang/ folder.
 
+4) You can choose if you want to show the server IP and/or server hostname on the login screen.
+
 = What can I do with this plugin? =
 
 You can upload a custom image for the login screen and specify the link attached to the logo. By default you are redirected to the homepage of your site.
 
 You can also set a custom background color for the login screen and add your own CSS.
+
+You can choose if you want to show the server IP and/or server hostname on the login screen. We find this extremly useful when changing the server of a WordPress installation. If you activate both checkboxes you will know inmediately if you are login in on the correct server.
 
 = What ideas is this plugin based on? =
 
@@ -45,7 +49,9 @@ You can access the description of the plugin in Spanish at: [Customize Login Ima
 
 == Screenshots ==
 
-1. You can specify the logo image and clickthrough link on the options page.
+1. New interface where you can also show IP and/or hostname on login screen.
+2. Example of login screen.
+3. Interface of version 2 and earlier.
 
 == Installation ==
 
@@ -82,6 +88,10 @@ Please keep in mind that only PNG files are allowed.
 = What happens if I don't introduce a logo URL or don't upload a logo? =
 Then the default WordPress logo will be displayed. This logo can be found in the wp-admin folder of the WordPress installation in the images folder.
 
+= How can I show the server ip and/or hostname on the login screen? =
+Activate the checkboxes for the Server IP and HOSTNAME and SAVE.
+You can choose to show both (both options checked), only one (one option checked) or none (nothing checked).
+
 = Are there any known incompatibilities? =
 The plugin should not be used together with other plugins with similar funcionalities like: [Customize Admin](http://wordpress.org/plugins/customize-admin/ "Customize Admin").
 
@@ -89,6 +99,21 @@ The plugin should not be used together with other plugins with similar funcional
 Of course we do. That's why we created it. ;-)
 
 == Changelog ==
+
+= 3.3.1 =
+* Code improvement.
+
+= 3.3 =
+* Solved Warning: call_user_func_array() expects parameter 1 to be a valid callback, function ‘cli_show_server_hostname’
+
+= 3.2 =
+* Bugfix for error: Fatal Error customize-login-image.php on line 66
+
+= 3.1 =
+* Added translations to the IP and/or HOSTNAME information shown on login screen.
+
+= 3.0 =
+* Added checkboxes to show the IP and/or HOSTNAME on login screen.
 
 = 2.0 =
 * Added compatibility to WordPress 3.8 "Parker".
@@ -111,8 +136,8 @@ Of course we do. That's why we created it. ;-)
 
 == Upgrade Notice ==
 
-= 2.0 =
-Added compatibility to WordPress 3.8 "Parker". Thanks to kitchin (http://wordpress.org/support/profile/kitchin) for the proposed fix.
+= 3.3.1 =
+Code improvement.
 
 == Contact ==
 
