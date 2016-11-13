@@ -37,9 +37,9 @@
         <tr>
           <td><a href="/user?user_id=<?php echo $users[$i]->data->ID;?>"><?php echo $users[$i]->data->user_login;?></a></td>
           <td><?php echo $users[$i]->data->user_email;?></td>
-          <td><a href="from-a?uid=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-default">edit</button></a></td>
-          <td>@TODO:<a href="from-a?uid=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-primary">edit</button></a></td>
-          <td><a href="from-b?uid=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-success">edit</button></a></td>
+          <td><a href="from-a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-default">edit</button></a></td>
+          <td><a href="a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-primary">edit</button></a></td>
+          <td><a href="b?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-success">edit</button></a></td>
 
         </tr>
       <?php endfor; ?>

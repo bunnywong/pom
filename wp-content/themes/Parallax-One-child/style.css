@@ -22,6 +22,9 @@ footer {
   display: none;
 }
 
+.disabled {
+  background: lightgray!important;
+}
 
 #site-navigation a {
   color: white;
