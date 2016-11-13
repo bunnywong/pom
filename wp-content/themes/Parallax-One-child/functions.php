@@ -61,7 +61,7 @@ function my_title_in_from($from, $is_admin) {
 /**
  * Render ✅ as result
  */
-function my_field_render($val, $title) {
+function my_field_alter($val, $title) {
   if (substr($title,0, 6) === '派息') {
     if ($val[0] === 'yes') { // [0] as default
       $val[0] = '✅';
@@ -82,26 +82,26 @@ function get_transaction_table($posts, $is_admin, $from_number) {
       $str .= '<tr>';
 
   foreach ($posts as $key => $val) {
-    if ($val->post_status === 'publish' || $is_admin === TRUE) {
       // Get meta by post ID
       $custom_field = get_post_meta($val->ID);
       $str .= '<tr>';
       $data = my_title_in_from('b', $is_admin);
-      // vd($data[1]);
+      // vd($data[1]); //@DEBUG
+
       if ($from_number === 'from_a') {
         if ($custom_field['類別'][0] === '股息') {
           foreach ($data as $k => $v) {
-            $str .= '<td>' . my_field_render($custom_field[$v], $v) . '</td>';
+            $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
           }
         }
       }
       else {
+        // From B
         foreach ($data as $k => $v) {
-          $str .= '<td>' . my_field_render($custom_field[$v], $v) . '</td>';
+          $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
         }
       }
       $str .= '</tr>';
-    }
     $i++; //@DEBUG
   }
   $str .= '</tbody></table>';
