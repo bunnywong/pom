@@ -32,6 +32,7 @@
       // Get meta by post ID
       $custom_field = get_post_meta($val->ID);
       $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><tbody>';
+
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
         $str .= '<tr><td>'.($v) . '</td><td>' . my_field_render($custom_field[$v], $v) . '</td></tr>';
       }
