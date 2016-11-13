@@ -30,7 +30,7 @@
   $str .= '</div>';
 
   echo $str;
-  echo '<hr><h2 class="text-center">B. 提取或轉移</h2>';
+  echo '<hr><h2 class="text-center">提取或轉移</h2>';
   echo do_shortcode('[wpuf_form id="' . $wpuf_form_id . '"]');
 
   if (!$is_admin) {

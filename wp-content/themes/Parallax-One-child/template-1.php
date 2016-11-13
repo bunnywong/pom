@@ -49,7 +49,7 @@
   $str .= '</div>';
 
   echo $str;
-  echo '<hr><h2 class="text-center">A. 存入股本</h2>';
+  echo '<hr><h2 class="text-center">存入股本</h2>';
 
   if ($is_admin) {
     echo do_shortcode('[wpuf_form id="' . $wpuf_form_id . '"]'); //@admin only
