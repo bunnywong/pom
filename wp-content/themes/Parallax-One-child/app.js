@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
   // - Remove detail field
   $('body.user-is-client .transaction_detail').hide();
   // - Add PENDING to remark field
-  $('body.user-is-client .transaction_detail .textarea').text('PENDING');
+  $('body.user-is-client .transaction_detail textarea').text('PENDING');
   $('body.user-is-client #transaction_contact').val('自己').prop('disabled', true).addClass('disabled');
 
   // Lock for name field
