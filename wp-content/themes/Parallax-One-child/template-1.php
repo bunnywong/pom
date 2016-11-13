@@ -17,7 +17,8 @@
   }
 
   $cid = 4; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
-  $posts = query_posts( array( 'author'=> $user_id, 'post_type' => 'post', 'category__and'=> $cid, 'posts_per_page' => 6, 'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit'), 'paged' => ( get_query_var('paged') ? get_query_var('paged') : 1 ) ) );
+  $posts = get_my_post($cid, $user_id);
+
   include( get_my_block_view_template() );
   wp_reset_postdata();
   get_header();
@@ -41,10 +42,13 @@
     $i++; //@DEBUG
   }
 
+  $cid = 3; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
+  $posts = get_my_post($cid, $user_id);
+  $str .= get_transaction_table($posts, $is_admin, 'from_a');
+
   $str .= '</div>';
 
   echo $str;
-  echo '<h3 class="db text-center">POST COUNT: '.$i.'</h3>'; //@DEBUG
 
   echo '<hr><h2 class="text-center">A. 存入股本</h2>';
   echo do_shortcode('[wpuf_form id="49"]'); //@admin only
