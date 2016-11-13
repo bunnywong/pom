@@ -5,20 +5,23 @@
 
   global $current_user;
   $wpuf_form_id = 57;
+  $user = $current_user;
   $user_id = get_current_user_id();
   $is_admin = FALSE;
-  $user = $current_user;
 
   if ($current_user->roles[0] === 'administrator') {
     $is_admin = TRUE;
   }
 
   if (isset($_GET['user_id']) && $is_admin) {
+    $user_id = $_GET['user_id'];
     $user = get_userdata($_GET['user_id']);
   }
 
   $cid = 3; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
+  // vd($user_id); //@DEBUG
   $posts = get_my_post($cid, $user_id);
+  // vd($posts); //@DEBUG
   include( get_my_block_view_template() );
   wp_reset_postdata();
   get_header();
