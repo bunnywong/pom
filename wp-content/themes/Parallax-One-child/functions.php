@@ -111,8 +111,7 @@ function get_transaction_table($posts, $is_admin, $from_number) {
       $data = my_title_in_from('b', $is_admin);
 
       if ($from_number === 'from_a') {
-        vd($custom_field);
-        if ($custom_field['類別'][0] === '股息') {
+        if ($custom_field['transaction_class'][0] === '股息') { // '股息' is value
           foreach ($data as $k => $v) {
             $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
           }

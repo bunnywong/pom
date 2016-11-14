@@ -1,3 +1,4 @@
+<div class="container">
 <?php
   /*
   Template Name: 2. transaction list view
@@ -27,10 +28,8 @@
   get_header();
 
   $str;
-  $str .= '<div class="container">';
   $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
   $str .= get_transaction_table($posts, $is_admin, 'from_b');
-  $str .= '</div>';
 
   echo $str;
   echo '<hr><h2 class="text-center">提取或轉移</h2>';
@@ -41,6 +40,7 @@
   }
 ?>
 
+</div>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
