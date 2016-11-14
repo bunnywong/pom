@@ -35,17 +35,18 @@
       $custom_field = get_post_meta($val->ID);
       $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><tbody>';
 
+      // vd(my_title_in_from('a', $is_admin));
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
-        $str .= '<tr><td>'.($v) . '</td><td>' . my_field_render($custom_field[$v], $v) . '</td></tr>';
+        $str .= '<tr><td>'.($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
       }
       $str .= '</tbody></table>';
     }
     $i++; //@DEBUG
   }
-
+/*
   $cid = 3; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
   $posts = get_my_post($cid, $user_id);
-  $str .= get_transaction_table($posts, $is_admin, 'from_a');
+  $str .= get_transaction_table($posts, $is_admin, 'from_a');*/
   $str .= '</div>';
 
   echo $str;

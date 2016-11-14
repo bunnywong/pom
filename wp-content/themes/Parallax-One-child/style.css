@@ -26,6 +26,10 @@ footer {
   background: lightgray!important;
 }
 
+body.user-is-client .transaction_detail {
+  display: none;
+}
+
 #site-navigation a {
   color: white;
 }

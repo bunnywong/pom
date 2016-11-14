@@ -7,10 +7,9 @@ jQuery(document).ready(function($) {
   // Clean up for normal user
   // - keep last 2 option
   $('body.user-is-client select[name="transaction_class"] option:lt(-2)').remove()
-  // - Remove detail field
-  $('body.user-is-client .transaction_detail').hide();
   // - Add PENDING to remark field
   $('body.user-is-client .transaction_detail textarea').text('PENDING');
+  // Initial value
   $('body.user-is-client #transaction_contact').val('自己').prop('disabled', true).addClass('disabled');
 
   // Lock for name field

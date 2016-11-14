@@ -52,7 +52,8 @@ function my_title_in_from($from, $is_admin) {
   }
 
   if ($from === 'b') {
-    $from = array('日期', '類別', '金額', '詳細');
+    // $from = array('日期', '類別', '金額', '詳細');
+    $from = array('transaction_date', 'transaction_class', 'transaction_price', 'transaction_detail');
   }
 
   return $from;
