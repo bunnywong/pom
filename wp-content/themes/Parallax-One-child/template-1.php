@@ -36,8 +36,9 @@
       $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><tbody>';
 
       // vd(my_title_in_from('a', $is_admin));
+      // vd($custom_field);
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
-        $str .= '<tr><td>'.($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
+        $str .= '<tr><td>'. get_title_from_a($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
       }
       $str .= '</tbody></table>';
     }
