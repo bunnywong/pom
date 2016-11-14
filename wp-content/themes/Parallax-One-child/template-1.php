@@ -41,7 +41,7 @@
         $stock_init_table .= '<tr><td>'. get_title_from_a($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
       }
 
-      // Output stock initial table
+      // 1. Output stock initial table
       if (count($stock_init_table) > 0) {
         $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"><tbody>';
         $str .= $stock_init_table;
@@ -54,13 +54,15 @@
     }
   }
 
-  // Get stock interest table
+  // 2. Get stock interest table
   $cid = 3; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
   $posts = get_my_post($cid, $user_id);
   $stock_interest_table = get_transaction_table($posts, $is_admin, 'from_a');
   // Output stock interest table
   if (count($stock_interest_table) > 0) {
+    $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th></tr></thead><tbody>';
     $str .= $stock_interest_table;
+    $str .= '</tbody></table>';
   }
   else {
     // No stock interest table handle

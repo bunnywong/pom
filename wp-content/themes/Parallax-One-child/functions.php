@@ -100,10 +100,6 @@ function my_field_alter($val, $title) {
  * Render transaction table
  */
 function get_transaction_table($posts, $is_admin, $from_number) {
-  $i = 0; //@DEBUG
-  $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th></tr></thead><tbody>';
-      $str .= '<tr>';
-
   foreach ($posts as $key => $val) {
       // Get meta by post ID
       $custom_field = get_post_meta($val->ID);
@@ -111,6 +107,7 @@ function get_transaction_table($posts, $is_admin, $from_number) {
       $data = my_title_in_from('b', $is_admin);
 
       if ($from_number === 'from_a') {
+        //@TODO: Remove empty DOM for return
         if ($custom_field['transaction_class'][0] === '股息') { // '股息' is value
           foreach ($data as $k => $v) {
             $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
@@ -124,10 +121,7 @@ function get_transaction_table($posts, $is_admin, $from_number) {
         }
       }
       $str .= '</tr>';
-    $i++; //@DEBUG
   }
-  $str .= '</tbody></table>';
-// echo '<h3 class="db text-center">POST COUNT: '.$i.'</h3>'; //@DEBUG
   return $str;
  }
 
