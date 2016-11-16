@@ -29,7 +29,11 @@
   get_header();
 
   $str = '';
-  $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
+
+  if (isset($user->display_name)) {
+    $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
+  }
+
   $stock_init_table;
 
   foreach ($posts as $key => $val) {
