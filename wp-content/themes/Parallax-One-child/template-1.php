@@ -28,7 +28,7 @@
   wp_reset_postdata();
   get_header();
 
-  $str;
+  $str = '';
   $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
   $stock_init_table;
 

@@ -27,7 +27,7 @@
   wp_reset_postdata();
   get_header();
 
-  $str;
+  $str = '';
   $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
   // $str .= get_transaction_table($posts, $is_admin, 'from_b');
   $stock_transaction_table = get_transaction_table($posts, $is_admin, 'from_b');

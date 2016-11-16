@@ -100,6 +100,7 @@ function my_field_alter($val, $title) {
  * Render transaction table
  */
 function get_transaction_table($posts, $is_admin, $from_number) {
+  $str = '';
   foreach ($posts as $key => $val) {
       // Get meta by post ID
       $custom_field = get_post_meta($val->ID);
