@@ -7,7 +7,7 @@
   wp_reset_postdata();
   get_header();
 
-  $users =  get_users( $args );
+  $users =  get_users();
 
   // $all_meta_for_user = get_user_meta( 1);
   // vd( $all_meta_for_user );
