@@ -34,7 +34,7 @@
     $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
   }
 
-  $stock_init_table;
+  $stock_init_table = '';
 
   foreach ($posts as $key => $val) {
     if ($val->post_status === 'publish' || $is_admin === TRUE) {
@@ -47,7 +47,7 @@
 
       // 1. Output stock initial table
       if (count($stock_init_table) > 0) {
-        $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"><tbody>';
+        $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"><thead><th colspan="2"><a href="/wp-admin/post.php?post=' . $post->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></th></thead><tbody>';
         $str .= $stock_init_table;
         $str .= '</tbody></table>';
       }

@@ -37,9 +37,9 @@
         <tr>
           <td><a href="/user?user_id=<?php echo $users[$i]->data->ID;?>"><?php echo $users[$i]->data->user_login;?></a></td>
           <td><?php echo $users[$i]->data->user_email;?></td>
-          <td><a href="from-a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-default">edit</button></a></td>
-          <td><a href="a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-primary">edit</button></a></td>
-          <td><a href="b?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-success">edit</button></a></td>
+          <td><a href="from-a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-default">add</button></a></td>
+          <td><a href="a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-primary">show</button></a></td>
+          <td><a href="b?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-success">show</button></a></td>
 
         </tr>
       <?php endfor; ?>
@@ -48,7 +48,7 @@
 
   <a href="/new-user"><button type="button" class="center-block btn btn-primary btn-lg">註冊新股東</button></a>
 
-  <div class="db text-center">@TODO: enhance fields option by request</div>
+  <?php // @TODO: enhance fields option by request ?>
   <?php //dvm($users); ?>
   <?php //dvm($users[0]); ?>
 </div>
