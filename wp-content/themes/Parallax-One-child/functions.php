@@ -113,6 +113,7 @@ function get_transaction_table($posts, $is_admin, $from_number) {
           foreach ($data as $k => $v) {
             $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
           }
+          $str .= '<td><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></td>';
         }
       }
       else {
@@ -120,6 +121,7 @@ function get_transaction_table($posts, $is_admin, $from_number) {
         foreach ($data as $k => $v) {
           $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
         }
+        $str .= '<td><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></td>';
       }
       $str .= '</tr>';
   }

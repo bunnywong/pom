@@ -37,7 +37,7 @@
   // $str .= get_transaction_table($posts, $is_admin, 'from_b');
   $stock_transaction_table = get_transaction_table($posts, $is_admin, 'from_b');
   if (count($stock_transaction_table) > 0) {
-    $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th></tr></thead><tbody>';
+    $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>Action</th></tr></thead><tbody>';
     $str .= $stock_transaction_table;
     $str .= '</tbody></table>';
   }
