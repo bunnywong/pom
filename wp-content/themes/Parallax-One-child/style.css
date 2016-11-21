@@ -29,6 +29,9 @@ footer {
 body.user-is-client .transaction_detail {
   display: none;
 }
+body.user-is-client .user-id {
+  display: none;
+}
 
 #site-navigation a {
   color: white;

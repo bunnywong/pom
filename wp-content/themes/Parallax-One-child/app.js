@@ -11,6 +11,12 @@
       this.getCalendar();
       this.permissionAlter();
       this.formAlter();
+      this.putUserId();
+    },
+    putUserId:function() {
+      if ($.trim($('#user_id').val()) === '') {
+        $('#user_id').val(app.userId);
+      }
     },
     formAlter:function() {
       // Lock for name field
@@ -40,6 +46,17 @@
     getCalendar:function() {
       $( ".date input" ).datepicker({dateFormat: "yy-mm-dd"});
       $(".date input").datepicker("setDate", new Date()); // Default as today
+    },
+    _getUserId:function() {
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+      for (var i=0; i<vars.length; i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == 'user_id'){
+          return pair[1];
+        }
+      }
+      return false;
     },
   }
   app.attach();

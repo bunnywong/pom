@@ -3,7 +3,7 @@
  * @package parallax-one
  */
 ?>
-hihihi
+
 <article id="post-<?php the_ID(); ?>" <?php post_class('content-single-page'); ?>>
 	<header class="entry-header single-header">
 		<?php the_title( '<h1 itemprop="headline" class="entry-title single-title">', '</h1>' ); ?>
