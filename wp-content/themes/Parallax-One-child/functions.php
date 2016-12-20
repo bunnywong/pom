@@ -53,7 +53,8 @@ function get_title_from_a($query) {
       return '詳細';
     default:
       // For `interest_n`
-      return '利息 ' . substr($query, -1);
+      $month_pos = strlen($query) - strrpos($query, '_');
+      return '利息 ' . substr($query, -($month_pos) + 1);
   }
 }
 /**
