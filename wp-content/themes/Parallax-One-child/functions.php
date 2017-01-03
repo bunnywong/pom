@@ -51,6 +51,8 @@ function get_title_from_a($query) {
       return '參考編號';
     case 'stock_detail':
       return '詳細';
+    case 'user_id':
+      return 'User ID';
     default:
       // For `interest_n`
       $month_pos = strlen($query) - strrpos($query, '_');
@@ -63,11 +65,10 @@ function get_title_from_a($query) {
 function my_title_in_from($from, $is_admin) {
   if ($from === 'a') {
     // $from = array('申請時間', '股權生效', '認購股數', '金額', '參考編號', '詳細');
-    $from = array('stock_time', 'stock_effect', 'stock_unit', 'stock_price', 'stock_ref', 'stock_detail');
+    $from = array('stock_time', 'stock_effect', 'stock_unit', 'stock_price', 'stock_ref', 'stock_detail', 'user_id');
     // Append 派息 1 ~ 12 to array for ADMIN role
     if ($is_admin) {
-      for($i=1; $i < 13; $i++) {
-        // $from[] = '派息' . $i;
+      for($i=1; $i <= 12; $i++) {
         $from[] = 'stock_interest_' . $i;
       }
     }
@@ -75,7 +76,7 @@ function my_title_in_from($from, $is_admin) {
 
   if ($from === 'b') {
     // $from = array('日期', '類別', '金額', '詳細');
-    $from = array('transaction_date', 'transaction_class', 'transaction_price', 'transaction_detail');
+    $from = array('transaction_date', 'transaction_class', 'transaction_price', 'transaction_detail', 'transaction_contact'); // , 'user_id'
   }
 
   return $from;
@@ -100,16 +101,19 @@ function my_field_alter($val, $title) {
 /**
  * Render transaction table
  */
-function get_transaction_table($posts, $is_admin, $from_number) {
+function get_transaction_table($posts, $is_admin, $from_number, $user_id) {
   $str = '';
   foreach ($posts as $key => $val) {
+    $custom_field = get_post_meta($val->ID);
+
+    if ($custom_field['user_id'][0] === $user_id) {
       // Get meta by post ID
-      $custom_field = get_post_meta($val->ID);
       $str .= '<tr>';
       $data = my_title_in_from('b', $is_admin);
 
       if ($from_number === 'from_a') {
         //@TODO: Remove empty DOM for return
+        // Condition for stock-interest only
         if ($custom_field['transaction_class'][0] === '股息') { // '股息' is value
           foreach ($data as $k => $v) {
             $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
@@ -125,15 +129,17 @@ function get_transaction_table($posts, $is_admin, $from_number) {
         $str .= '<td><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></td>';
       }
       $str .= '</tr>';
+    }
   }
   return $str;
  }
 
 /**
- * Query post
+ * Query post by condition
  */
 function get_my_post($cid, $user_id) {
-  return query_posts( array( 'author'=> $user_id, 'post_type' => 'post', 'category__and'=> $cid, 'posts_per_page' => 6, 'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit'), 'paged' => ( get_query_var('paged') ? get_query_var('paged') : 1 ) ) );
+  return query_posts( array( 'post_type' => 'post', 'category__and'=> $cid, 'posts_per_page' => 6, 'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit'), 'paged' => ( get_query_var('paged') ? get_query_var('paged') : 1 ) ) );
 }
+
 
 

@@ -35,24 +35,22 @@
   }
 
   foreach ($posts as $key => $val) {
-
     if ($val->post_status === 'publish' || $is_admin === TRUE) {
       // Get meta by post ID
       $stock_init_table = '';
       $custom_field = get_post_meta($val->ID);
+      // 1. Collect data
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
-        $stock_init_table .= '<tr><td>' . get_title_from_a($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
+        if ($custom_field['user_id'][0] === $user_id) {
+          // work for necessary user ID only
+          $stock_init_table .= '<tr><td>' . get_title_from_a($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
+        }
       }
-
-      // 1. Output stock initial table
-      if (count($stock_init_table)) {
+      // 2. Output stock initial table
+      if ($stock_init_table !== '')  { // Exclude not match user ID posts
         $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"><thead><th colspan="2"><a href="/wp-admin/post.php?post=' . $post->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></th></thead><tbody>';
         $str .= $stock_init_table;
         $str .= '</tbody></table>';
-      }
-      else {
-        // No stock initial table handle
-        $str .= '<div class="alert alert-info">No 存入股本 record.</div>';
       }
     }
   }
@@ -74,10 +72,10 @@
   }
 
   echo $str;
-  echo '<hr><h2 class="text-center">存入股本</h2>';
 
   if ($is_admin) {
-    // echo do_shortcode('[wpuf_form id="' . $wpuf_form_id . '"]'); //@admin only
+    // echo '<hr><h2 class="text-center">存入股本</h2>';
+    // echo do_shortcode('[wpuf_form id="' . $wpuf_form_id . '"]'); //@admin only //@DEBUG: disable
     echo "<script>jQuery('body').addClass('user-is-admin');</script>";
   } else {
     echo "<script>jQuery('body').addClass('user-is-client');</script>";

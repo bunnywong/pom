@@ -20,9 +20,7 @@
   }
 
   $cid = 3; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
-  // vd($user_id); //@DEBUG
   $posts = get_my_post($cid, $user_id);
-  // vd($posts); //@DEBUG
   include( get_my_block_view_template() );
   wp_reset_postdata();
   get_header();
@@ -33,11 +31,10 @@
     $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
   }
 
-
   // $str .= get_transaction_table($posts, $is_admin, 'from_b');
-  $stock_transaction_table = get_transaction_table($posts, $is_admin, 'from_b');
+  $stock_transaction_table = get_transaction_table($posts, $is_admin, 'from_b', $user_id);
   if (count($stock_transaction_table) > 0) {
-    $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>Action</th></tr></thead><tbody>';
+    $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>收款人手機或電郵</th><th>Action</th></tr></thead><tbody>';
     $str .= $stock_transaction_table;
     $str .= '</tbody></table>';
   }
