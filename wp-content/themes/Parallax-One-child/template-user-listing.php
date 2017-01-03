@@ -36,10 +36,19 @@
       <?php for($i = 0; $i < count($users); $i++): ?>
         <tr>
           <td><a href="/user?user_id=<?php echo $users[$i]->data->ID;?>"><?php echo $users[$i]->data->user_login;?></a></td>
-          <td><?php echo $users[$i]->data->user_email;?></td>
-          <td><a href="from-a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-default">add</button></a></td>
-          <td><a href="a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-primary">show</button></a></td>
-          <td><a href="b?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-success">show</button></a></td>
+          <td>
+            <?php echo $users[$i]->data->user_email;?>
+          </td>
+          <td>
+            <a href="from-a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-default">add</button></a>
+          </td>
+          <td>
+            <a href="a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-primary">show</button></a>
+          </td>
+          <td>
+            <a href="b?user_id=<?php echo $users[$i]->data->ID;?>" class="pull-right"><button type="button" class="btn btn-primary ">show</button></a>
+            <a href="b?user_id=<?php echo $users[$i]->data->ID;?>" class="pull-right"><button type="button" class="btn btn-success pull-right">add</button></a>
+          </td>
 
         </tr>
       <?php endfor; ?>
