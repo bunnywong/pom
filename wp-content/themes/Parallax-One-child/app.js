@@ -12,6 +12,7 @@
       this.permissionAlter();
       this.formAlter();
       this.putUserId();
+      this.pagePost();
     },
     putUserId:function() {
       if ($.trim($('#user_id').val()) === '') {
@@ -46,6 +47,10 @@
     getCalendar:function() {
       $( ".date input" ).datepicker({dateFormat: "yy-mm-dd"});
       $(".date input").datepicker("setDate", new Date()); // Default as today
+    },
+    pagePost:function() {
+      // Add [Back] button
+      $('body.single-post .entry-content').html('<button type="button" class="post-refresh btn btn-primary btn-lg" onClick="window.history.back();"">Back</button>');
     },
     _getUserId:function() {
       var query = window.location.search.substring(1);
