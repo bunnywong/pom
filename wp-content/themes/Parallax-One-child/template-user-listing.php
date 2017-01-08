@@ -16,6 +16,7 @@
 <div class="container">
   <div class="col-xs-12">
     <h1 class="text-center">Admin Home</h1>
+    <a href="/new-user"><button type="button" class="pull-right btn btn-primary btn-lg">註冊新股東</button></a>
   </div>
 
   <div class="col-xs-12">
@@ -46,16 +47,14 @@
             <a href="a?user_id=<?php echo $users[$i]->data->ID;?>"><button type="button" class="btn btn-primary">show</button></a>
           </td>
           <td>
-            <a href="b?user_id=<?php echo $users[$i]->data->ID;?>" class="pull-right"><button type="button" class="btn btn-primary ">show</button></a>
-            <a href="b?user_id=<?php echo $users[$i]->data->ID;?>" class="pull-right"><button type="button" class="btn btn-success pull-right">add</button></a>
+            <a href="b?user_id=<?php echo $users[$i]->data->ID;?>" class="pull-left btn-edit"><button type="button" class="btn btn-primary ">show</button></a>
+            <a href="b?user_id=<?php echo $users[$i]->data->ID;?>" class="pull-left btn-add"><button type="button" class="btn btn-success pull-right">add</button></a>
           </td>
 
         </tr>
       <?php endfor; ?>
     </tbody>
   </table>
-
-  <a href="/new-user"><button type="button" class="center-block btn btn-primary btn-lg">註冊新股東</button></a>
 
   <?php // @TODO: enhance fields option by request ?>
   <?php //dvm($users); ?>

@@ -47,6 +47,14 @@ body.user-is-client .user-id {
   margin-bottom: 30px;
 }
 
+body.page-template-template-user-listing .my-table {
+  max-width: none;
+}
+
+.btn-add {
+  margin-left: 10px;
+}
+
 .my-table td:first-child {
   max-width: 200px;
 }

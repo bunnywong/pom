@@ -61,21 +61,21 @@
   $stock_interest_table = get_transaction_table($posts, $is_admin, 'from_a', $user_id);
 
   // Output stock interest table
-  if (count($stock_interest_table) > 0) {
+  if ($stock_interest_table!== '') {
     $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>收款人手機或電郵</th><th>Action</th></tr></thead><tbody>';
     $str .= $stock_interest_table;
     $str .= '</tbody></table>';
   }
   else {
     // No stock interest table handle
-    $str .= '<div class="alert alert-info">No 股息 record.</div>';
+    $str .= '<div class="container"><div class="col-xs-12 alert alert-info">No 股息 record.</div></div>';
   }
 
   echo $str;
 
   if ($is_admin) {
-    // echo '<hr><h2 class="text-center">存入股本</h2>';
-    // echo do_shortcode('[wpuf_form id="' . $wpuf_form_id . '"]'); //@admin only //@DEBUG: disable
+    echo '<hr><h2 class="text-center">存入股本</h2>';
+    echo do_shortcode('[wpuf_form id="' . $wpuf_form_id . '"]'); //@admin only //@DEBUG: disable this line
     echo "<script>jQuery('body').addClass('user-is-admin');</script>";
   } else {
     echo "<script>jQuery('body').addClass('user-is-client');</script>";
