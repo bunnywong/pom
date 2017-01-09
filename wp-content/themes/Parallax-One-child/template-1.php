@@ -39,8 +39,8 @@
       $custom_field = get_post_meta($val->ID);
       // A1. Collect data
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
-        //by (string) to ensure work in non-admin role
-        if ((int)$custom_field['user_id'][0] === $user_id) {
+
+        if ($custom_field['user_id'][0] === $user_id) {
           // work for necessary user ID only
           $stock_init_table .= '<tr><td>' . get_title_from_a($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
         }
