@@ -20,7 +20,6 @@
     $user_id = $_GET['user_id'];
     $user = get_userdata($_GET['user_id']);
   }
-
   $cid = 4; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
   $posts = get_my_post($cid, $user_id);
 
@@ -33,7 +32,6 @@
   if (isset($user->display_name)) {
     $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
   }
-
   foreach ($posts as $key => $val) {
     if ($val->post_status === 'publish' || $is_admin === TRUE) {
       // Get meta by post ID
@@ -41,7 +39,8 @@
       $custom_field = get_post_meta($val->ID);
       // A1. Collect data
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
-        if ($custom_field['user_id'][0] === $user_id) {
+        //by (string) to ensure work in non-admin role
+        if ((int)$custom_field['user_id'][0] === $user_id) {
           // work for necessary user ID only
           $stock_init_table .= '<tr><td>' . get_title_from_a($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
         }
@@ -68,7 +67,7 @@
   $stock_interest_table = get_transaction_table($posts, $is_admin, 'from_a', $user_id);
 
   // B. Output stock interest table
-  if ($stock_interest_table!== '') {
+  if ($stock_interest_table !== '') {
     $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>收款人手機或電郵</th><th>Action</th></tr></thead><tbody>';
     $str .= $stock_interest_table;
     $str .= '</tbody></table>';
