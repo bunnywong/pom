@@ -39,16 +39,23 @@
       // Get meta by post ID
       $stock_init_table = '';
       $custom_field = get_post_meta($val->ID);
-      // 1. Collect data
+      // A1. Collect data
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
         if ($custom_field['user_id'][0] === $user_id) {
           // work for necessary user ID only
           $stock_init_table .= '<tr><td>' . get_title_from_a($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
         }
       }
-      // 2. Output stock initial table
-      if ($stock_init_table !== '')  { // Exclude not match user ID posts
-        $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"><thead><th colspan="2"><a href="/wp-admin/post.php?post=' . $post->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></th></thead><tbody>';
+
+      // A2. Add detail field
+      if (strlen($stock_init_table)) {
+        $stock_init_table .= '<tr><td>詳細</td><td>' . $val->post_content . '</tr></td>';
+      }
+
+      // Output stock initial table ( A1 + A2 )
+      // vd($val->ID);
+      if (strlen($stock_init_table)) {
+        $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"><thead><th colspan="2"><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></th></thead><tbody>';
         $str .= $stock_init_table;
         $str .= '</tbody></table>';
       }
@@ -60,7 +67,7 @@
   $posts = get_my_post($cid, $user_id);
   $stock_interest_table = get_transaction_table($posts, $is_admin, 'from_a', $user_id);
 
-  // Output stock interest table
+  // B. Output stock interest table
   if ($stock_interest_table!== '') {
     $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>收款人手機或電郵</th><th>Action</th></tr></thead><tbody>';
     $str .= $stock_interest_table;

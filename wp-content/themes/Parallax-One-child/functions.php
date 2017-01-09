@@ -49,8 +49,6 @@ function get_title_from_a($query) {
       return '金額';
     case 'stock_ref':
       return '參考編號';
-    case 'stock_detail':
-      return '詳細';
     case 'user_id':
       return 'User ID';
     default:
@@ -64,8 +62,8 @@ function get_title_from_a($query) {
  */
 function my_title_in_from($from, $is_admin) {
   if ($from === 'a') {
-    // $from = array('申請時間', '股權生效', '認購股數', '金額', '參考編號', '詳細');
-    $from = array('stock_time', 'stock_effect', 'stock_unit', 'stock_price', 'stock_ref', 'stock_detail', 'user_id');
+    // $from = array('申請時間', '股權生效', '認購股數', '金額', '參考編號', 'user_id');
+    $from = array('stock_time', 'stock_effect', 'stock_unit', 'stock_price', 'stock_ref', 'user_id');
     // Append 派息 1 ~ 12 to array for ADMIN role
     if ($is_admin) {
       for($i=1; $i <= 12; $i++) {
