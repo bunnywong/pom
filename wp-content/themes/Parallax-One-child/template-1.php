@@ -51,9 +51,15 @@
       }
 
       // Output stock initial table ( A1 + A2 )
-      // vd($val->ID);
       if (strlen($stock_init_table)) {
-        $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"><thead><th colspan="2"><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></th></thead><tbody>';
+        // Prepare [edit] button
+        $btn_edit = '';
+        if ($is_admin) {
+          $btn_edit = '<thead><th colspan="2"><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></th></thead>';
+        }
+
+        // Prepare <table> with detail
+        $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table" '.$btn_edit.'><tbody>';
         $str .= $stock_init_table;
         $str .= '</tbody></table>';
       }
