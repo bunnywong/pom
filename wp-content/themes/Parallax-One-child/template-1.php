@@ -59,7 +59,7 @@
         }
 
         // Prepare <table> with detail
-        $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table" '.$btn_edit.'><tbody>';
+        $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"> '.$btn_edit.'<tbody>';
         $str .= $stock_init_table;
         $str .= '</tbody></table>';
       }
@@ -70,10 +70,9 @@
   $cid = 3; // category__and: 1 = Uncategorized, 4 = 存入股本, 3 =  往來記錄
   $posts = get_my_post($cid, $user_id);
   $stock_interest_table = get_transaction_table($posts, $is_admin, 'from_a', $user_id);
-
   // B. Output stock interest table
-  if ($stock_interest_table !== '') {
-    $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>收款人手機或電郵</th><th>Action</th></tr></thead><tbody>';
+  if ($stock_interest_table !== '' && $stock_interest_table !== '<tr></tr>') {
+    $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>收款人手機或電郵</th><th>Action</th></tr></thead><tbody>';
     $str .= $stock_interest_table;
     $str .= '</tbody></table>';
   }

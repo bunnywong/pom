@@ -112,6 +112,7 @@ function get_transaction_table($posts, $is_admin, $from_number, $user_id) {
       if ($from_number === 'from_a') {
         //@TODO: Remove empty DOM for return
         // Condition for stock-interest only
+
         if ($custom_field['transaction_class'][0] === '股息') { // '股息' is value
           foreach ($data as $k => $v) {
             $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
