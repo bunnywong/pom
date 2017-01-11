@@ -106,28 +106,33 @@ function get_transaction_table($posts, $is_admin, $from_number, $user_id) {
 
     if ($custom_field['user_id'][0] === $user_id) {
       // Get meta by post ID
-      $str .= '<tr>';
       $data = my_title_in_from('b', $is_admin);
 
-      if ($from_number === 'from_a') {
-        //@TODO: Remove empty DOM for return
-        // Condition for stock-interest only
+      switch ($from_number) {
+        case 'from_a':
+          // Condition for stock-interest only
+          if ($custom_field['transaction_class'][0] === '股息') { // '股息' is value
+            foreach ($data as $k => $v) {
+              $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
+            }
+            $str .= '<td><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></td>';
+          }
+          break;
 
-        if ($custom_field['transaction_class'][0] === '股息') { // '股息' is value
+        case 'from_b':
           foreach ($data as $k => $v) {
             $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
           }
           $str .= '<td><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></td>';
-        }
+          break;
       }
-      else {
-        // From B
-        foreach ($data as $k => $v) {
-          $str .= '<td>' . my_field_alter($custom_field[$v], $v) . '</td>';
-        }
-        $str .= '<td><a href="/wp-admin/post.php?post=' . $val->ID . '&action=edit" class="pull-right"><button type="button" class="btn btn-primary">edit</button></a></td>';
+
+      // Attach wrapper with result
+      if ($str !== '') {
+        $str = '<tr>' . $str;
+        $str .= '</tr>';
       }
-      $str .= '</tr>';
+
     }
   }
   return $str;
