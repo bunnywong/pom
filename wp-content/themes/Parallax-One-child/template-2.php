@@ -35,7 +35,7 @@
 
   // B. Output transaction table
   if ($stock_transaction_table !== '') {
-    $str .= '<table class="table table-responsive table-striped table-bordered Xtable-hover my-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>收款人手機或電郵</th><th>Action</th></tr></thead><tbody>';
+    $str .= '<table class="table table-responsive table-striped table-bordered table-hover my-table js-transaction-table"><thead><tr><th>日期</th><th>類別</th><th>金額</th><th>詳細</th><th>收款人手機或電郵</th><th>Action</th></tr></thead><tbody>';
     $str .= $stock_transaction_table;
     $str .= '</tbody></table>';
   }
@@ -50,6 +50,7 @@
   if (!$is_admin) {
     echo "<script>jQuery('body').addClass('user-is-client');</script>";
   }
+  echo "<script>jQuery('body').addClass('page-template-2');</script>";
 ?>
 
 </div>

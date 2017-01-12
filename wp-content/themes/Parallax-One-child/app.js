@@ -13,6 +13,7 @@
       this.formAlter();
       this.putUserId();
       this.pagePost();
+      this.pageTemplate2();
     },
     putUserId:function() {
       if ($.trim($('#user_id').val()) === '') {
@@ -49,8 +50,19 @@
       $(".date input").datepicker("setDate", new Date()); // Default as today
     },
     pagePost:function() {
-      // Add [Back] button
+      // Add [Back] button3
       $('body.single-post .entry-content').html('<button type="button" class="post-refresh btn btn-primary btn-lg" onClick="window.history.back();"">Back</button>');
+    },
+    pageTemplate2:function() {
+      var interestAvailable = 0;
+      // Get amount & calc available collect interest
+      $('.page-template-2 .js-transaction-table tbody td:nth-child(3)').each(function() {
+        if ($(this).prev().text() === '股息' && $(this).next().text() !== 'PENDING') {
+          interestAvailable = (parseFloat($.trim($(this).text()))) + parseFloat(interestAvailable);
+        }
+      });
+      // Inject interest to table bottom
+      $('.page-template-2 .js-transaction-table tbody').append('<tr><td colspan="6">可提取總股息: $' + interestAvailable + '</td></td></tr>');
     },
     _getUserId:function() {
       var query = window.location.search.substring(1);
