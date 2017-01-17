@@ -26,10 +26,9 @@ footer {
   background: lightgray!important;
 }
 
+body.user-is-client .client-hide,
+body.user-is-client .user-id,
 body.user-is-client .transaction_detail {
-  display: none;
-}
-body.user-is-client .user-id {
   display: none;
 }
 

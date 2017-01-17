@@ -28,6 +28,7 @@
   get_header();
 
   $str = '';
+  $client_hide_list = array('User ID');
 
   if (isset($user->display_name)) {
     $str .= '<h2 class="text-center">Welcome ' . $user->display_name . '</h2><hr>';
@@ -41,7 +42,11 @@
       foreach (my_title_in_from('a', $is_admin) as $k => $v) {
         if ($custom_field['user_id'][0] ===  (string)$user_id) {
           // work for necessary user ID only
-          $stock_init_table .= '<tr><td>' . get_title_from_a($v) . '</td><td>' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
+          $class_hide = '';
+          if (in_array(get_title_from_a($v), $client_hide_list)) {
+            $class_hide = 'client-hide';
+          }
+          $stock_init_table .= '<tr><td class="' . $class_hide . '">' . get_title_from_a($v) . '</td><td  class="' . $class_hide . '">' . my_field_alter($custom_field[$v], $v) . '</td></tr>';
         }
       }
 
