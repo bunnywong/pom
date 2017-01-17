@@ -27,7 +27,6 @@ footer {
 }
 
 body.user-is-client .client-hide,
-body.user-is-client .user-id,
 body.user-is-client .transaction_detail {
   display: none;
 }
@@ -44,6 +43,9 @@ body.user-is-client .transaction_detail {
   max-width: 500px;
   margin: 0 auto;
   margin-bottom: 30px;
+}
+.my-table td:first-child {
+  min-width: 100px;
 }
 
 body.page-template-template-user-listing .my-table {
